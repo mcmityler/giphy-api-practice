@@ -9,22 +9,35 @@ const errorMessage = document.querySelector(".error-message");
 searchButton.addEventListener("click", searchNewGif);
 let searchURL =
   "https://api.giphy.com/v1/gifs/translate?api_key=O3ixZvBHJHh4mBOOBggvTBAlOHXENemG&s=cats";
-function getRandomImage() {
-  fetch(searchURL)
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(function (response) {
-      img.src = response.data.images.original.url;
-      console.log("fetched all");
-    })
-    .catch((error) => {
-      console.error("Error fetching the Gif:", error);
-    });
+
+//BELOW IS USING ASYNC AND AWAIT AND try&catch rather than then and catch
+async function getRandomImage() {
+  try {
+    const response = await fetch(searchURL);
+    const gifData = await response.json();
+    img.src = gifData.data.images.original.url;
+    console.log("fetched all");
+  } catch (error) {
+    console.error("Error fetching the Gif:", error);
+  }
 }
+// BELOW IS USING FETCH AND PROMISES
+// function getRandomImage() {
+//   fetch(searchURL)
+//     .then(function (response) {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then(function (response) {
+//       img.src = response.data.images.original.url;
+//       console.log("fetched all");
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching the Gif:", error);
+//     });
+// }
 
 function searchNewGif() {
   console.log(searchInput.value);
