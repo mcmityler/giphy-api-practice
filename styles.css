@@ -7,6 +7,7 @@
 :root {
   --dark-sand: #e5cb90;
   --light-sand: #fff3c8;
+  --lighter-water: #3cd4c5;
   --light-water: #34a99d;
   --dark-water: #458393;
 }
@@ -20,7 +21,7 @@ body {
 .gif-container {
   display: grid;
   place-items: center;
-  grid-template-rows: 30px 20px 600px 50px;
+  grid-template-rows: 20px 30px 20px 600px 50px;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
@@ -44,4 +45,16 @@ body {
   border: none;
   border-radius: 10px;
   grid-column: 1/-1;
+}
+.random-button:hover,
+#search-button:hover {
+  background-color: var(--light-water);
+}
+.random-button:active,
+#search-button:active {
+  background-color: var(--lighter-water);
+}
+.error-message {
+  grid-column: 1/-1;
+  color: red;
 }
